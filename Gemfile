@@ -17,6 +17,6 @@ gem 'rake'
 gem 'twitter'
 
 #group :test do
- # gem 'faker'
+ gem 'faker'
   #gem 'rspec'
 #end
