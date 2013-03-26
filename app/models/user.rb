@@ -3,9 +3,10 @@ class User < ActiveRecord::Base
 
 
 	def tweets_stale?
+
 		if self.tweets.nil? || self.tweets.last.nil?
 			true
-		elsif self.tweets.last.created_at > 15.minutes.ago
+		elsif self.tweets.last.created_at > 0.seconds.ago
 			self.tweets.destroy_all
 			false
 		else

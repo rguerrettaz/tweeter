@@ -1,0 +1,7 @@
+<h1>Your ten most recent tweets fool!!</h1>
+
+<ul id ="tweet_list">
+		<% @tweets.each do  |tweet| %>
+			<li><%= tweet.content %></li>
+		<% end %>
+</ul>

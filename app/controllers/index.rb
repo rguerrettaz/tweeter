@@ -9,14 +9,23 @@ end
 get '/users/:username' do
 	if User.find_by_username(params[:username]) == nil
 		@user = User.create(:username => params[:username])
+		session[:id] = @user.id
+
 	else
 		@user = User.find_by_username(params[:username])
+		session[:id] = @user.id
 	end
-  if @user.tweets_stale?
-    @user.fetch_tweets
-  end
+
+  erb :cached
+ #  
+	# 
+end
+
+get '/refresher_dawg' do
+	@user = User.find(session[:id])
+	@user.fetch_tweets
   @tweets = @user.tweets
-	erb :cached
+  erb :_tweet_list, :layout => false
 end
 
 
